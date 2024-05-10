@@ -1,25 +1,60 @@
 class User {
     static int nextId = 1; // to increment when creating a product e3tebrha counter byzeed ma3 kol user
-    int id;
-    String name;
-    String email;
+    final private int id;
+    private String name;
+    private String email;
+    private String address;
+    private String pass;
+
+
 
     // Constructor
-    public User(String name, String email) {
+    public User(String name, String email, String address,String pass ) {
         this.id = nextId++;
         this.name = name;
         this.email = email;
+        this.pass = pass;
     }
 
+    // Getters
     public int getId() {
-        return id;
+        return this.id;
     }
 
     public String getName() {
-        return name;
+        return this.name;
     }
 
     public String getEmail() {
-        return email;
+        return this.email;
     }
+
+    public String getAddress(){
+        return this.address;
+    }
+    // Setters
+    public  void setName(String name){
+        this.name=name;
+    }
+    public  void setEmail(String email){
+        this.email=email;
+    }
+    public  void setAddress(String address){
+        this.address=address;
+    }
+
+    // login function
+    public void login(String email, String pass){
+        if (this.email != email){
+            System.out.println("Invalid email");
+        }
+        else if (this.pass != pass){
+            System.out.println("Invalid password");
+        }
+        else {
+
+        }
+
+    }
+
 }

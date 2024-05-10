@@ -16,13 +16,13 @@ public class StoreManager {
     }
 
     // Method to add a product
-    public void addProduct(String name) {
-        products.add(new Product(name));
-    }
+   // public void addProduct(String name) {
+    //    products.add(new Product(name));
+    //}
 
     // Method to add a user
-    public void addUser(String name, String email) {
-        users.add(new User(name, email));
+    public void addUser(String name, String email,String address,String pass) {
+        users.add(new User(name, email, address, pass));
     }
 
     // Method to add an order
