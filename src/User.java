@@ -1,4 +1,7 @@
 
+import java.util.List;
+
+
 class InvalidEmailException extends RuntimeException{
     public InvalidEmailException(String message){
         super(message);
@@ -22,6 +25,7 @@ public class User {
 
     // Constructor
     public User(String name, String email, String address,String pass ) {
+        
         this.id = nextId++;
         this.name = name;
         this.email = email;
@@ -54,20 +58,5 @@ public class User {
     public  void setAddress(String address){
         this.address=address;
     }
-
-    // login function
-    public void login(String email, String pass){
-        
-        if (!(this.email.equals(email))){
-            throw new InvalidEmailException("Invalid Email");
-        }
-        else if (!(this.pass.equals(pass))){
-            throw new InvalidPassException("Invalid password");
-        }
-        else {
-            System.out.println("Welcome");
-        }
-
-    }
-
+    
 }
