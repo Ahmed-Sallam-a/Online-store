@@ -1,4 +1,16 @@
-class User {
+
+class InvalidEmailException extends RuntimeException{
+    public InvalidEmailException(String message){
+        super(message);
+    }
+}
+class InvalidPassException extends RuntimeException{
+    public InvalidPassException(String message){
+        super(message);
+    }
+}
+
+public class User {
     static int nextId = 1; // to increment when creating a product e3tebrha counter byzeed ma3 kol user
     final private int id;
     private String name;
@@ -45,11 +57,12 @@ class User {
 
     // login function
     public void login(String email, String pass){
+        
         if (!(this.email.equals(email))){
-            System.out.println("Invalid email");
+            throw new InvalidEmailException("Invalid Email");
         }
         else if (!(this.pass.equals(pass))){
-            System.out.println("Invalid password");
+            throw new InvalidPassException("Invalid password");
         }
         else {
             System.out.println("Welcome");
