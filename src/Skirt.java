@@ -30,14 +30,6 @@ public class Skirt extends Product {
         this.category=category;
     }
 
-    @Override
-    public boolean isAvailable() {
-        if(number > 0)
-            return true;
-        else
-            return false;
-    }
-
     public void addStock(int number){
         this.number += number;
     }
@@ -45,6 +37,7 @@ public class Skirt extends Product {
     public void viewStock(){
         System.out.println(this.number);
     }
+    public int getStock(){return this.number;}
 
     public void sellProduct(int number){
         this.number -= number;

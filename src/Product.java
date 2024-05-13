@@ -54,8 +54,6 @@ public abstract class Product implements Usable{
     public void setSize(String size) {
         this.size = size;
     }
-
-    public abstract boolean isAvailable();
     public abstract void sellProduct(int number);
     public abstract void viewStock();
     public abstract void addStock(int number);
