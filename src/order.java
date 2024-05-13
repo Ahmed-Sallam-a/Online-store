@@ -1,4 +1,5 @@
-import java.time.LocalDate;
+
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
@@ -22,7 +23,7 @@ class Order {
     }
      
     public String getDate(){
-        return date.toString()
+        return date.toString();
     }
     
     public List<Product> getProducts() {
@@ -36,12 +37,11 @@ class Order {
     
     public boolean  searchForItem (Product product ){
         int i ;
-        for (i=0, i<Products.length(), i++){
-            if (strcmp(Products[i].name,product.name )){
+        for (i=0; i<products.size(); i++){
+            if (!(products.get(i).name.equals(product.name))){
                 return true;
             }
         }
-        
         return false;
     }
     

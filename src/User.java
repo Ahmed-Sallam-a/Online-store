@@ -45,14 +45,14 @@ class User {
 
     // login function
     public void login(String email, String pass){
-        if (this.email != email){
+        if (!(this.email.equals(email))){
             System.out.println("Invalid email");
         }
-        else if (this.pass != pass){
+        else if (!(this.pass.equals(pass))){
             System.out.println("Invalid password");
         }
         else {
-
+            System.out.println("Welcome");
         }
 
     }
