@@ -15,7 +15,9 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+
 import java.io.IOException;
+
 public class HelloApplication extends Application {
     private ObservableList<Object> cartItems = FXCollections.observableArrayList();
     private ListView<Object> cartListView = new ListView<>(cartItems);
@@ -23,16 +25,11 @@ public class HelloApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("hello-view.fxml"));
-        Label headerLabel = new Label("Kero w 7elmy online shop");
+        Label headerLabel = new Label("online shop");
         headerLabel.setStyle("-fx-font-size: 75px; -fx-font-weight: bold;");
         headerLabel.setPadding(new Insets(50, 10, 200, 10));
-        Label label1 = new Label("Label 1");
-        Label label2 = new Label();
-        // Bind the textProperty of label2 to the textProperty of label1
-        label2.textProperty().bind(label1.textProperty());
-        new Order;
+
         VBox root = new VBox();
-        root.getChildren().addAll(label1, label2);
         Button menuButton1 = new Button("Home");
         Button menuButton2 = new Button("Products");
         Button menuButton3 = new Button("Cart");
@@ -120,6 +117,7 @@ public class HelloApplication extends Application {
                             gridPane.add(priceLabel, i, 2); // Column 0, Row 2
                             gridPane.add(b, i, 3); // Column 0, Row 3
 
+
                             b.setOnAction(ev -> {
                                 HBox cartItem = new HBox();
                                 cartItem.setSpacing(10);
@@ -150,23 +148,62 @@ public class HelloApplication extends Application {
             String username = T1.getText();
             PasswordField T2 = new PasswordField();
             String password = T2.getText();
+            Button Enter = new Button("Enter");
             Button Sign_in = new Button("Sign in");
+            //Sign_in.setVisible(false);
             login.getChildren().addAll(loginlabel, Firstname, T1, Lastname, T2, Sign_in);
-            Sign_in.setOnAction(event2 -> {
-                String s1 = T1.getText();
-                System.out.println(s1);
-                String s2 = T1.getText();
-                System.out.println(s2);
-                T1.setText("");
-                T2.setText("");
-                menuButton2.fire();
+            Sign_in.setOnAction(actionEvent -> {
+                if(T2.getText().equals("invalid")){
+                    System.out.println("invalid");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Error");
+                    alert.setContentText("invalid password!");
+                    alert.showAndWait();
+                }
+                // else{Sign_in.setVisible(true);}
+
+                else if(T2.getText().equals("inv")){
+                    System.out.println("invalid");
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setHeaderText("Error");
+                    alert.setContentText("invalid password!");
+                    alert.showAndWait();
+                }
+                else{String s1 = T1.getText();
+                    System.out.println(s1);
+                    String s2 = T2.getText();
+                    System.out.println(s2);
+                    T1.setText("");
+                    T2.setText("");
+                    menuButton2.fire();}
             });
+
             pane.setCenter(login);
             pane.setAlignment(login, Pos.TOP_CENTER);
         });
 
         menuButton3.setOnAction(e -> {
             pane.setCenter(null);
+            if(cartItems.size() != 0){
+                Button Buy = new Button("Buy");
+                HBox cartBuyButtonHBox = new HBox();
+                cartBuyButtonHBox.setSpacing(30);
+                cartBuyButtonHBox.getChildren().addAll(Buy);
+                cartBuyButtonHBox.setAlignment(Pos.CENTER);
+                cartItems.add(cartBuyButtonHBox);
+                Buy.setOnAction(e2 ->{
+                    ////////////////////////adding cart items
+                    int totalPrice = 0;
+                    for(int i = 0; i < cartItems.size()-1; i++) {
+                        HBox cartitemaccessor =(HBox) cartItems.get(i);
+                        Label label = (Label) cartitemaccessor.getChildren().get(2);
+                        String price = label.getText();
+                        price = price.substring(1);
+                        int pricenumber = Integer.parseInt(price);
+                        totalPrice += pricenumber;
+                    }
+                    System.out.println("The Total price is " + totalPrice + " Please Pusrchase at cashier");
+                });}
             pane.setCenter(cartListView);
 
         });
